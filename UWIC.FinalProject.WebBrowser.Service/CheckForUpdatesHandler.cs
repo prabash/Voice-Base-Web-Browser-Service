@@ -11,7 +11,7 @@ namespace UWIC.FinalProject.WebBrowser.Service
             var results = new Dictionary<string, object> {{"Available", false}, {"DownloadLink", null}};
             var downloalUrl = "";
             Version newVersion = null;
-            const string xmlUrl = "..//data//update.xml";
+            const string xmlUrl = "C://VebBrowserUpdates//update.xml";
             var reader = new XmlTextReader(xmlUrl);
             try
             {
@@ -28,15 +28,15 @@ namespace UWIC.FinalProject.WebBrowser.Service
                             switch (elementName)
                             {
                                 case "version":
-                                {
-                                    newVersion = new Version(reader.Value);
-                                    break;
-                                }
+                                    {
+                                        newVersion = new Version(reader.Value);
+                                        break;
+                                    }
                                 case "url":
-                                {
-                                    downloalUrl = reader.Value;
-                                    break;
-                                }
+                                    {
+                                        downloalUrl = reader.Value;
+                                        break;
+                                    }
                             }
                         }
                     }
@@ -54,6 +54,10 @@ namespace UWIC.FinalProject.WebBrowser.Service
                     results["Available"] = false;
                     results["url"] = "";
                 }
+            }
+            catch
+            {
+                throw;
             }
             finally
             {
